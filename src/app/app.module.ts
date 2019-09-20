@@ -12,20 +12,25 @@ import { InstructionsComponent } from './instructions/instructions.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { GameModeComponent } from './game-mode/game-mode.component';
+
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     InstructionsComponent,
-    GameSettingsComponent
+    GameSettingsComponent,
+    GameModeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     GMapModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
