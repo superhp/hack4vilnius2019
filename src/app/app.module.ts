@@ -11,6 +11,7 @@ import { GameSettingsComponent } from './game-settings/game-settings.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppRoutingModule,
     BrowserAnimationsModule,
     GMapModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
