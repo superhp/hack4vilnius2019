@@ -7,17 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapComponent } from './map/map.component';
 
 import {GMapModule} from 'primeng/gmap';
+import { InstructionsComponent } from './instructions/instructions.component';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    InstructionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    GMapModule
+    GMapModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
