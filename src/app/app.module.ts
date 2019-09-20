@@ -6,16 +6,22 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapComponent } from './map/map.component';
 
-import {GMapModule} from 'primeng/gmap';
+import { GMapModule } from 'primeng/gmap';
+import { GameSettingsComponent } from './game-settings/game-settings.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
+<<<<<<< HEAD
     InstructionsComponent
+=======
+    GameSettingsComponent
+>>>>>>> 65569f0db92e3aca56019d22ae4f0fba86e65e0c
   ],
   imports: [
     BrowserModule,
