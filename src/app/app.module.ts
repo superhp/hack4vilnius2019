@@ -17,11 +17,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [
     AppComponent,
     MapComponent,
-<<<<<<< HEAD
-    InstructionsComponent
-=======
+    InstructionsComponent,
     GameSettingsComponent
->>>>>>> 65569f0db92e3aca56019d22ae4f0fba86e65e0c
   ],
   imports: [
     BrowserModule,
