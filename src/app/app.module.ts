@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapComponent } from './map/map.component';
 
-import {GMapModule} from 'primeng/gmap';
+import { GMapModule } from 'primeng/gmap';
+import { GameSettingsComponent } from './game-settings/game-settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    GameSettingsComponent
   ],
   imports: [
     BrowserModule,
