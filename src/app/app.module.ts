@@ -13,13 +13,17 @@ import { InstructionsComponent } from './instructions/instructions.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from './shared/shared.module';
 
+import { GameModeComponent } from './game-mode/game-mode.component';
+
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     InstructionsComponent,
-    GameSettingsComponent
+    GameSettingsComponent,
+    GameModeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     GMapModule,
     FlexLayoutModule,
     SharedModule
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
