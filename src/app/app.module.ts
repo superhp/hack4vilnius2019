@@ -11,6 +11,7 @@ import { GameSettingsComponent } from './game-settings/game-settings.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from './shared/shared.module';
 
 import { GameModeComponent } from './game-mode/game-mode.component';
 
@@ -30,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     GMapModule,
     FlexLayoutModule,
+    SharedModule
     MatButtonModule
   ],
   providers: [],
