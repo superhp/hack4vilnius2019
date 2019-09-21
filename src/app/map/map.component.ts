@@ -23,17 +23,12 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
         const gameId = params['gameId'];
-        console.log(gameId);
         this.gameService.getGame(gameId).subscribe(g => {
           this.game = g; 
-          console.log(this.game);
           this.game.points.map(pp => {
-            console.log(pp.id);
             this.gameService.getPoint(pp.id).subscribe(pr => {
-              console.log(pr);
               this.points.push(pr);
               this.overlays.push(new google.maps.Marker({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title}));
-              console.log({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title});
             });
           });
         });        
