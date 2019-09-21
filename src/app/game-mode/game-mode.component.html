@@ -1,4 +1,10 @@
 <div class="game-mode-container">
-  <button mat-button color="primary">Single</button>
-  <button mat-button color="primary">Team</button>
+
+  <app-page-header header="Game Mode"></app-page-header>
+
+  {{authService.userData.displayName}}
+  
+  <button mat-button [routerLink]="['/game-settings/0']">Single</button>
+  <button mat-button [routerLink]="['/game-settings/1']">Team</button>
+
 </div>

@@ -1,1 +1,13 @@
-<p>game-settings works!</p>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div>
+        <app-page-header header="Game Settings"></app-page-header>
+    </div>
+    <mat-tab-group>
+      <mat-tab label="Themed">
+        <app-defined-games-accordion></app-defined-games-accordion>
+      </mat-tab>
+      <mat-tab label="Random">
+        <div>Random not supported yet.</div>
+      </mat-tab>
+    </mat-tab-group>
+</div>
