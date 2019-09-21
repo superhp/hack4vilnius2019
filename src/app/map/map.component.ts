@@ -15,11 +15,10 @@ import { ActivatedRoute } from '@angular/router';
 export class MapComponent implements OnInit {
   game: any;
   points = [];
+  options: any;
+  overlays = [];
     
   constructor(private activatedRoute: ActivatedRoute, private gameService: GamesService) {}
-
-  options: any;
-  overlays: any[];
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -33,6 +32,8 @@ export class MapComponent implements OnInit {
             this.gameService.getPoint(pp.id).subscribe(pr => {
               console.log(pr);
               this.points.push(pr);
+              this.overlays.push(new google.maps.Marker({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title}));
+              console.log({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title});
             });
           });
         });        
