@@ -2,6 +2,32 @@
     flex: 1 1 auto;
 }
 
-.choose-button-container {
-    display: flex;
+.game-card-container {
+    .game-card {
+        position: relative;
+        overflow: hidden;
+        height: 400px;
+        margin: 30px;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+        .game-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            h1 {
+                border-bottom: 1px solid white;
+            }
+            p {
+                margin: 0;
+            }
+        }
+    }
 }
