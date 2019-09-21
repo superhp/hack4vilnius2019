@@ -70,8 +70,8 @@ export class MapComponent implements OnInit {
       });
 
     this.options = {
-          center: {lat: 54.6872, lng: 25.2797},
-          zoom: 14,
+          center: {lat: 54.6863, lng: 25.2887},
+          zoom: 16,
           mapTypeId: 'terrain',
           fullscreenControl: false,
           streetViewControl: false,
