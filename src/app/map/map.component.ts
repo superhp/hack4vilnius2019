@@ -44,4 +44,9 @@ export class MapComponent implements OnInit {
           zoom: 14
       };
   }
+
+  handleOverlayClick(event) {
+    let pointClicked = event.overlay.title;
+    console.log(pointClicked);
+  }
 }
