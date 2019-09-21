@@ -1,4 +1,5 @@
 import {Component,OnInit} from '@angular/core';
+import {GamesService} from "../services/games.service";
 
 @Component({
     selector: 'app-map',
@@ -11,6 +12,11 @@ import {Component,OnInit} from '@angular/core';
     `]
 })
 export class MapComponent implements OnInit {
+  points: any;
+
+  constructor(private gameService: GamesService){
+      //gameService.getGames()
+  }
     
   options: any;
 
