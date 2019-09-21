@@ -1,4 +1,4 @@
-@import '../../themes/variables.less';
+@import "../../themes/variables.less";
 
 .game-mode-container {
   display: flex;
@@ -6,4 +6,16 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  .game-mode-button {
+    width: 100%;
+    flex: 1;
+    border-bottom: 1px dashed rgb(128, 128, 128);
+  }
+  .singleplayer-button {
+      background-color: rgba(190, 0, 0, 0.3);
+  }
+  .multiplayer-button {
+    background-color: rgba(240, 204, 0, 0.3);
+  }
 }
