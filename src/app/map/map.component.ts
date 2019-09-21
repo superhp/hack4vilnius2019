@@ -3,6 +3,8 @@ import {GamesService} from "../services/games.service";
 import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../services/location.service';
 
+declare var google: any;
+
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
@@ -30,8 +32,10 @@ export class MapComponent implements OnInit {
           this.game = g; 
           this.game.points.map(pp => {
             this.gameService.getPoint(pp.id).subscribe(pr => {
-              this.points.push(pr);
-              this.overlays.push(new google.maps.Marker({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title}));
+              if (pr) {
+                this.points.push(pr);
+                this.overlays.push(new google.maps.Marker({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title}));
+              }
             });
           });
         });        

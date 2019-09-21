@@ -7,7 +7,7 @@
         <span class="menu-spacer"></span>
     
         <div class="menu-items" fxLayout="row" fxLayoutAlign="end center" *ngIf="authService.isLoggedIn"> 
-            <a mat-button> Hello, {{authService.userData.name}} </a>
+            <a mat-button> Hello, {{authService.userData && authService.userData.name}} </a>
             <a mat-button (click)="logout()"> Logout </a>
         </div>
     </mat-toolbar-row>
