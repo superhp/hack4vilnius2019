@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MapComponent implements OnInit {
   game: any;
+  points: any;
     
   constructor(private activatedRoute: ActivatedRoute, private gameService: GamesService) {}
 
@@ -24,7 +25,14 @@ export class MapComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
         const gameId = params['gameId'];
         console.log(gameId);
-        this.gameService.getGame(gameId).subscribe(g => {this.game = g; console.log(this.game)});        
+        this.gameService.getGame(gameId).subscribe(g => {
+          this.game = g; 
+          console.log(this.game);
+          this.gameService.getGamePoints(gameId).subscribe(p=> {
+            this.points = p;
+            console.log(this.points);
+          });
+        });        
       })
 
       this.options = {
