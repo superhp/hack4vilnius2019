@@ -1,17 +1,17 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<div fxLayout="column" fxLayoutAlign="center center" class="instructions-container">
     <div>
         <app-page-header header="Instructions"></app-page-header>
     </div>
 
     <div>
         <ul>
-            <li>You'll get X points of interest to visit</li>
+            <li>You'll get {{pointsCount}} points of interest to visit</li>
             <li>Plan your route as you like</li>
             <li>When  you reach the object, you'll be able to learn about it in the app!</li>
         </ul>
     </div>
 
     <div>
-        <button mat-button color="primary" (click)="navigateToMap()">Start</button>
+        <button mat-button (click)="navigateToMap()">Start</button>
     </div>
 </div>

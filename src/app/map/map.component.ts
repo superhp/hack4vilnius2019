@@ -15,36 +15,45 @@ import { LocationService } from '../services/location.service';
 })
 export class MapComponent implements OnInit {
   game: any;
-  points: any;
+  points = [];
+  options: any;
+  overlays = [];
     
   constructor(private activatedRoute: ActivatedRoute,
      private gameService: GamesService,
      private locationService: LocationService) {}
 
-  options: any;
-  overlays: any[];
-
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
         const gameId = params['gameId'];
-        console.log(gameId);
         this.gameService.getGame(gameId).subscribe(g => {
           this.game = g; 
-          console.log(this.game);
-          this.gameService.getGamePoints(gameId).subscribe(p=> {
-            this.points = p;
-            console.log(this.points);
+          this.game.points.map(pp => {
+            this.gameService.getPoint(pp.id).subscribe(pr => {
+              this.points.push(pr);
+              this.overlays.push(new google.maps.Marker({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title}));
+            });
           });
         });        
-      })
+      });
 
       this.options = {
           center: {lat: 54.6872, lng: 25.2797},
-          zoom: 14
+          zoom: 14,
+          mapTypeId: 'terrain',
+          fullscreenControl: false,
+          streetViewControl: false,
+          mapTypeControl: false
       };
 
       this.locationService.currentLocation.subscribe(x => {
         console.log('Current coordinates: ' + x.latitude + ',' + x.longitude);
       })
+  }
+
+  handlePointClick(event) {
+    let pointClicked = event.overlay.title;
+    let pointDetails = this.points.find(x => x.title = pointClicked);
+    console.log(pointDetails);
   }
 }

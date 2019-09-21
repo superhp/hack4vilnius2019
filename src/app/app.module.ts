@@ -32,6 +32,8 @@ import { DefinedGamesAccordionComponent } from './defined-games-accordion/define
 
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
+import { FinishComponent } from './finish/finish.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { AuthService } from './services/auth.service';
     GameSettingsComponent,
     GameModeComponent,
     DefinedGamesAccordionComponent,
-    LoginComponent
+    LoginComponent,
+    FinishComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,
