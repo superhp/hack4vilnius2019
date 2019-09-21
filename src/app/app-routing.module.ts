@@ -5,6 +5,8 @@ import { InstructionsComponent } from 'src/app/instructions/instructions.compone
 import { GameSettingsComponent } from 'src/app/game-settings/game-settings.component';
 import { MapComponent } from 'src/app/map/map.component';
 import { LoginComponent } from './login/login.component';
+import { FinishComponent } from './finish/finish.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 
 const routes: Routes = [
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: '',   redirectTo: '/game-mode', pathMatch: 'full'},
   {path: 'game-settings/:mode', component: GameSettingsComponent},
   {path: 'instructions', component: InstructionsComponent},
-  {path: 'map', component: MapComponent}
+  {path: 'map', component: MapComponent},
+  {path: 'finish', component: FinishComponent},
+  {path: 'leaderboard', component: LeaderboardComponent}
 ];
 
 @NgModule({
