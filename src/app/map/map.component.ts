@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   overlays = [];
 
   timePassed = 0;
-  completed = 1;
+  completed = 10; // in percents
     
   constructor(private activatedRoute: ActivatedRoute,
      private gameService: GamesService,
