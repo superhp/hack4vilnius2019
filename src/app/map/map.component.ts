@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MapComponent implements OnInit {
   game: any;
-  points: any;
+  points = [];
     
   constructor(private activatedRoute: ActivatedRoute, private gameService: GamesService) {}
 
@@ -28,12 +28,15 @@ export class MapComponent implements OnInit {
         this.gameService.getGame(gameId).subscribe(g => {
           this.game = g; 
           console.log(this.game);
-          this.gameService.getGamePoints(gameId).subscribe(p=> {
-            this.points = p;
-            console.log(this.points);
+          this.game.points.map(pp => {
+            console.log(pp.id);
+            this.gameService.getPoint(pp.id).subscribe(pr => {
+              console.log(pr);
+              this.points.push(pr);
+            });
           });
         });        
-      })
+      });
 
       this.options = {
           center: {lat: 54.6872, lng: 25.2797},

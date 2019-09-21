@@ -25,7 +25,7 @@ export class GamesService {
     return this.afs.collection('games').doc(gameId).valueChanges();
   }
 
-  public getGamePoints(gameId: string): Observable<any> {
-    return this.afs.collection('games').doc(gameId).collection('points').valueChanges();
+  public getPoint(pointId: string): Observable<any> {
+    return this.afs.collection('points').doc(pointId).valueChanges();
   }
 }
