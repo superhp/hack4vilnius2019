@@ -15,7 +15,9 @@ import { SharedModule } from './shared/shared.module';
 
 import { GameModeComponent } from './game-mode/game-mode.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MatButtonModule } from '@angular/material/button';
     FlexLayoutModule,
     SharedModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

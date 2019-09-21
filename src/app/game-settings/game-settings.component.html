@@ -2,26 +2,14 @@
     <div>
         <app-page-header header="Game Settings"></app-page-header>
     </div>
-
-    <h4>Select type</h4>
-    <mat-form-field>
-        <mat-label>Game type</mat-label>
-        <mat-select [(value)]="selectedGameType">
-            <mat-option *ngFor="let type of gameTypes" [value]="type.value">
-                {{type.viewValue}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <div [ngSwitch]="selectedGameType">
-        <div *ngSwitchCase="gameTypeEnum.Themed">
-            <div>Themed selected</div>
+    <mat-tab-group>
+      <mat-tab label="Themed">
+        <div>
+          Accordion will be here
         </div>
-        <div *ngSwitchCase="gameTypeEnum.Random">
-            <div>Random selected</div>
-        </div>
-    </div>
-
+      </mat-tab>
+      <mat-tab label="Random">
+        <div>Random not supported yet.</div>
+      </mat-tab>
+    </mat-tab-group>
 </div>
-
-<p>game-settings works!</p>
