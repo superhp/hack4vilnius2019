@@ -26,7 +26,7 @@ export class GamesService {
     return doc.valueChanges().pipe(
         map(res => ({
             ...res,
-            ref: doc.ref.path
+            ref: doc.ref
         }))
     );
   }
@@ -36,6 +36,7 @@ export class GamesService {
   }
 
   public initGame(game: any, user: any): Observable<any> {
+    console.log(game);
       return from(this.afs.collection('results').add({
           start: new Date(),
           end: null,
@@ -45,4 +46,9 @@ export class GamesService {
           complete: []
       })).pipe(map(res => res.id));
   }
+
+  public finishGame(resultId: string) {
+    this.afs.collection("results").doc(resultId).update({end: new Date()});
+  }
+
 }

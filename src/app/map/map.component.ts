@@ -1,6 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+
 import { DemoService } from '../services/demo.service';
 import { GamesService } from '../services/games.service';
 import { LocationService } from '../services/location.service';
@@ -19,6 +21,7 @@ declare var google: any;
 })
 export class MapComponent implements OnInit {
   game: any;
+
   points = [];
   options: any;
   overlays = [];
@@ -36,7 +39,8 @@ export class MapComponent implements OnInit {
               private gameService: GamesService,
               private locationService: LocationService,
               private demoService: DemoService,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private router: Router) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -62,6 +66,8 @@ export class MapComponent implements OnInit {
                       scaledSize: new google.maps.Size(52, 52)
                     }
                   }));
+
+                  //this.onGameFinished();
                 }
               });
             });
@@ -122,6 +128,14 @@ export class MapComponent implements OnInit {
   closeChallengePopup() {
     this.selectedPoint = {};
     this.showSelectedPoint = false;
+  }
+
+  onGameFinished() {
+    this.gameService.finishGame(this.resultId);
+
+    this.router.navigate(['/finish'], { queryParams: {
+      resultId: this.resultId
+    }});
   }
 
 }

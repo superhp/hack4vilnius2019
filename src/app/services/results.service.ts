@@ -14,4 +14,17 @@ export class ResultsService {
 
     return this.afs.collection('results', ref => ref.where("game", "==", game.ref)).snapshotChanges();
   }
+
+  public getResult(resultId: string): Observable<any> {
+    return this.afs.collection("results").doc(resultId).snapshotChanges();
+  }
+
+  public calculateDurationInMinutes(start, end) {
+    if (end === null)
+      return -1;
+      
+    var diffMs = (end.seconds - start.seconds);
+
+    return Math.round(((diffMs % 86400000) % 3600000) / 60);
+  }
 }
