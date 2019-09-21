@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <!-- <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button> -->
+        <h1>Scavanger hunt</h1>
+        <span class="menu-spacer"></span>
+    
+        <div class="menu-items" fxLayout="row" fxLayoutAlign="end center" *ngIf="authService.isLoggedIn"> 
+            <a mat-button> Hello, {{authService.userData.name}} </a>
+            <a mat-button (click)="logout()"> Logout </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="layout-wrapper">
+    <div fxFlex="100%" fxFlex.lt-md="100%" class="flex-wrapper">
+        <router-outlet></router-outlet>
+    </div>
+</div>

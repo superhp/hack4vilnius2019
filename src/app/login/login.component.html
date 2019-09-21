@@ -1,6 +1,11 @@
-<div class="formGroup">
-    <button type="button" class="btn facebookBtn" (click)="authService.FacebookAuth()">
-      <i class="fab fa-facebook-plus-g"></i>
-      Log in with Facebook
-    </button>
+<div fxLayout="column" style="height:100%;" fxLayoutAlign="center center">
+    <div>
+        <app-page-header header="Login"></app-page-header>
+    </div>
+
+    <div class="formGroup">
+        <button class="loginBtn loginBtn-facebook" (click)="authService.FacebookAuth()">
+            Login with Facebook
+        </button>   
+    </div>
 </div>

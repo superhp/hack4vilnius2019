@@ -23,6 +23,8 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
+        this.userData.name = user.displayName.split(" ")[0];
+        console.log(user);
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
@@ -76,10 +78,10 @@ export class AuthService {
     })
   }
 
-  // Returns true when user is looged in and email is verified
+  // Returns true when user is logged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null) ? true : false;
   }
 
   // Sign in with Google

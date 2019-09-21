@@ -26,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
+
 import { DefinedGamesAccordionComponent } from './defined-games-accordion/defined-games-accordion.component';
 
 import { LoginComponent } from './login/login.component';
@@ -53,6 +55,10 @@ import { AuthService } from './services/auth.service';
     MatSelectModule,
     MatTabsModule,
     MatExpansionModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
