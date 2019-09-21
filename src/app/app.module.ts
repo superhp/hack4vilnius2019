@@ -26,7 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 
 import { DefinedGamesAccordionComponent } from './defined-games-accordion/defined-games-accordion.component';
 
@@ -34,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { FinishComponent } from './finish/finish.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { ChallengePopupComponent } from './challenge-popup/challenge-popup.component';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     DefinedGamesAccordionComponent,
     LoginComponent,
     FinishComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    ChallengePopupComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    MatInputModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,

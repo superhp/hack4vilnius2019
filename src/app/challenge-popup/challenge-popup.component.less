@@ -1,0 +1,67 @@
+@import '../../themes/variables.less';
+
+.challenge-popup {
+  z-index: 10;
+  height: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  background-color: #303030;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+  color: rgb(240, 240, 240);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  transition: height 400ms;
+}
+
+.challenge-popup.show {
+  height: 85%;
+}
+
+.challenge-popup img {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+  width: 100%;
+  height: auto;
+}
+
+.challenge-popup > .container {
+  margin-left: 20px;
+  margin-right: 20px;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.challenge-popup > .container button {
+  align-self: stretch;
+  margin-bottom: 20px;
+}
+
+.challenge-popup .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: @primary !important;
+}
+
+.svg-cross {
+  stroke: @primary;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.challenge-popup h3,
+.challenge-popup h4,
+.challenge-popup p {
+  margin-bottom: 0;
+}
+
+.challenge-popup mat-form-field {
+  margin-top: auto;
+}
