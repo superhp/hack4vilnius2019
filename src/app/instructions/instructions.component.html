@@ -3,15 +3,19 @@
         <app-page-header header="Instructions"></app-page-header>
     </div>
 
-    <div>
+    <div style="margin-top: 30px;">
+        <img src="../../assets/travel.png" style="width: 200px" />
+    </div>
+
+    <div style="margin-top: 30px; font-size: 17px; padding-right: 10px;">
         <ul>
-            <li>You'll get {{pointsCount}} points of interest to visit</li>
-            <li>Plan your route as you like</li>
-            <li>When  you reach the object, you'll be able to learn about it in the app!</li>
+            <li style="padding-bottom: 5px;">You'll get {{pointsCount}} points of interest to visit</li>
+            <li style="padding-bottom: 5px;">Plan your route as you like</li>
+            <li style="padding-bottom: 5px;">When  you reach the object, you'll be able to learn about it in the app!</li>
         </ul>
     </div>
 
     <div>
-        <button mat-button class="navigation-button" (click)="navigateToMap()">Start</button>
+        <button mat-flat-button color="primary" class="navigation-button" style="width: 150px; margin-top: 175px;" (click)="navigateToMap()">Start</button>
     </div>
 </div>

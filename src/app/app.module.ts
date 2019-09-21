@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import { MatIconModule, MatListModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
@@ -29,16 +30,6 @@ import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { AuthService } from './services/auth.service';
 import { SharedModule } from './shared/shared.module';
-
-
-
-
-
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -71,11 +62,13 @@ import { SharedModule } from './shared/shared.module';
     MatIconModule,
     MatInputModule,
     MatTableModule,
+    MatProgressSpinnerModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireFunctionsModule
 
   ],
   providers: [AuthService],
