@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { IGame } from '../models/game';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -18,5 +19,9 @@ export class GamesService {
         return { id, ...data };
       });
     }));
+  }
+  
+  public getGame(gameId: string): Observable<any> {
+    return this.afs.collection('games').doc(gameId).valueChanges();
   }
 }

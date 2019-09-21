@@ -1,5 +1,6 @@
 export interface IGame {
-    title: string;
-    description: string;
-    points: Array<any>;
+  id: string;
+  title: string;
+  description: string;
+  points: []
 }
