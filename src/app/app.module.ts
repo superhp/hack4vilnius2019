@@ -28,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
 
 import { DefinedGamesAccordionComponent } from './defined-games-accordion/defined-games-accordion.component';
 
@@ -67,6 +68,7 @@ import { ChallengePopupComponent } from './challenge-popup/challenge-popup.compo
     MatListModule,
     MatIconModule,
     MatInputModule,
+    MatTableModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,

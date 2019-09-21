@@ -1,1 +1,17 @@
-<p>finish works!</p>
+<div fxLayout="column" fxLayoutAlign="center center" class="instructions-container">
+    <div>
+        <app-page-header header="Finish"></app-page-header>
+    </div>
+
+    <div>
+        <ul>
+            <li>The game took you 1 hour to finish</li>
+            <li>You visited 5 points</li>
+            <li>You are 3rd in the leaderboard</li>
+        </ul>
+    </div>
+
+    <div>
+        <button mat-button class="navigation-button" [routerLink]="['/leaderboard']">Leaderboard</button>
+    </div>
+</div>
