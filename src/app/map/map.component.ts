@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { DemoService } from '../services/demo.service';
 import { GamesService } from '../services/games.service';
 import { LocationService } from '../services/location.service';
+import { ResultsService } from '../services/results.service';
 
 declare var google: any;
 
@@ -40,6 +41,7 @@ export class MapComponent implements OnInit {
               private locationService: LocationService,
               private demoService: DemoService,
               private authService: AuthService,
+              private resultsService: ResultsService,
               private router: Router) {}
 
   ngOnInit() {
@@ -53,6 +55,28 @@ export class MapComponent implements OnInit {
           this.gameService.initGame(g, userData).subscribe(res => {
             console.log('Game initialized', res);
             this.resultId = res;
+
+            this.resultsService.getResultValue(this.resultId).subscribe(results => {
+                let completedPoints = results.complete || [];
+                if(this.game.points.length === completedPoints.length){
+                    this.onGameFinished();
+                }
+                this.completed = completedPoints.length / this.game.points.length * 100;
+
+                for(let cp in completedPoints){
+                    let title = this.points.find(x => x.id === completedPoints[cp]).title;
+                    let point = this.overlays.find(x => x.title === title);
+                    if(point){
+                      point.setAnimation(null);
+                      point.setZIndex(0);
+                      point.setIcon({
+                        url: "../../assets/pin-green.png",
+                        scaledSize: new google.maps.Size(52, 52)
+                      });
+                    }
+                }                
+            });
+
             this.game.points.map(pp => {
               this.gameService.getPoint(pp.id).subscribe(pr => {
                 if (pr) {
@@ -72,7 +96,7 @@ export class MapComponent implements OnInit {
               });
             });
           });
-        });
+        });        
       });
 
     this.options = {
