@@ -1,6 +1,7 @@
 import {Component,OnInit} from '@angular/core';
 import {GamesService} from "../services/games.service";
 import { ActivatedRoute } from '@angular/router';
+import { LocationService } from '../services/location.service';
 
 @Component({
     selector: 'app-map',
@@ -16,7 +17,9 @@ export class MapComponent implements OnInit {
   game: any;
   points: any;
     
-  constructor(private activatedRoute: ActivatedRoute, private gameService: GamesService) {}
+  constructor(private activatedRoute: ActivatedRoute,
+     private gameService: GamesService,
+     private locationService: LocationService) {}
 
   options: any;
   overlays: any[];
@@ -39,5 +42,9 @@ export class MapComponent implements OnInit {
           center: {lat: 54.6872, lng: 25.2797},
           zoom: 14
       };
+
+      this.locationService.currentLocation.subscribe(x => {
+        console.log('Current coordinates: ' + x.latitude + ',' + x.longitude);
+      })
   }
 }
