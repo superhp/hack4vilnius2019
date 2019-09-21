@@ -1,4 +1,5 @@
 import {Component,OnInit} from '@angular/core';
+import {GamesService} from "../services/games.service";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,8 +13,9 @@ import { ActivatedRoute } from '@angular/router';
     `]
 })
 export class MapComponent implements OnInit {
+  game: any;
     
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private gameService: GamesService) {}
 
   options: any;
   overlays: any[];
@@ -22,6 +24,7 @@ export class MapComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
         const gameId = params['gameId'];
         console.log(gameId);
+        this.gameService.getGame(gameId).subscribe(g => {this.game = g; console.log(this.game)});        
       })
 
       this.options = {
