@@ -15,6 +15,8 @@ export class FinishComponent implements OnInit {
     result: any;
     duration: number;
 
+    position: number;
+
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       const resultId = params['resultId'];
@@ -26,6 +28,15 @@ export class FinishComponent implements OnInit {
         // this.result.game = this.result.game.split("/")[1];
         console.log(this.result);
         this.duration = this.resultsService.calculateDurationInMinutes(this.result.start, this.result.end);
+
+        this.resultsService.getResults(this.result.game.id).subscribe(results => {
+          console.log("Results");
+          console.log(results);
+          
+          let leaderboard = this.resultsService.transformResults(results);
+  
+          this.position = leaderboard.map(l => l.id).indexOf(resultId) + 1;
+        });
       });
 
     });

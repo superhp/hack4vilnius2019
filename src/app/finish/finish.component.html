@@ -1,13 +1,13 @@
 <div fxLayout="column" fxLayoutAlign="center center" class="instructions-container">
     <div>
-        <app-page-header header="Finish"></app-page-header>
+        <app-page-header header="Results"></app-page-header>
     </div>
 
     <div *ngIf="result">
         <ul>
             <li>The game took you {{duration}} mins to finish</li>
             <li>You visited {{result.complete.length}} points</li>
-            <li>You are 3rd in the leaderboard</li>
+            <li>You are no. {{position}} in the leaderboard</li>
         </ul>
     </div>
 

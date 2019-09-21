@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LeaderboardComponent implements OnInit {
 
-  constructor(public resultsSerivce: ResultsService,
+  constructor(public resultsService: ResultsService,
     private activatedRoute: ActivatedRoute) { }
 
   displayedColumns: string[] = ['position', 'name', 'duration'];
@@ -22,11 +22,12 @@ export class LeaderboardComponent implements OnInit {
       this.currentId = params['resultId'];
       const gameId = params['gameId'];
 
-      this.resultsSerivce.getResults(gameId).subscribe(results => {
+      this.resultsService.getResults(gameId).subscribe(results => {
         console.log("Results");
         console.log(results);
-        this.leaderboard = results.map(r => ({ id: r.payload.doc.id, name: r.payload.doc.data().username, duration: this.resultsSerivce.calculateDurationInMinutes(r.payload.doc.data().start, r.payload.doc.data().end) }));
-        this.leaderboard = this.leaderboard.filter(l => l.duration >= 0).sort((l1, l2) => l1.duration - l2.duration);
+        
+        this.leaderboard = this.resultsService.transformResults(results);
+
         console.log(this.leaderboard);
       });
     });
