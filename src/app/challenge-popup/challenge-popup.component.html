@@ -1,8 +1,8 @@
 <div class="challenge-popup" [ngClass]="{show : show}">
   <img alt="" src="{{point.image}}" />
   <svg viewBox="0 0 100 100" class="svg-cross" (click)="close()">
-      <line x1="30" y1="30" x2="70" y2="70" stroke-width="7.5"></line>
-      <line x1="30" y1="70" x2="70" y2="30" stroke-width="7.5"></line>
+    <line x1="30" y1="30" x2="70" y2="70" stroke-width="7.5"></line>
+    <line x1="30" y1="70" x2="70" y2="30" stroke-width="7.5"></line>
   </svg>
   <div class="container">
     <h3>{{point.title}}</h3>
@@ -10,8 +10,23 @@
     <h4>Challenge</h4>
     <p>{{point.question}}</p>
     <mat-form-field>
-      <input matInput placeholder="Answer" />
+      <input #answer matInput placeholder="Answer" (keyup)="onKey(answer.value)" />
     </mat-form-field>
-    <button mat-flat-button color="primary">Solve challenge</button>
+    <button *ngIf="loading === 0" mat-flat-button color="primary" (click)="checkAnswer()">Solve challenge</button>
+    <div class="spinner-container" *ngIf="loading === 1">
+      <mat-spinner diameter="30"></mat-spinner>
+    </div>
+    <div class="spinner-container" *ngIf="loading === 2">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="35" height="35" version="1.1">
+        <line x1="20" x2="80" y1="20" y2="80" stroke="red" stroke-width="7" />
+        <line x1="20" x2="80" y1="80" y2="20" stroke="red" stroke-width="7" />
+      </svg>
+    </div>
+    <div class="spinner-container" *ngIf="loading === 3">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="35" height="35" version="1.1">
+        <line x1="20" x2="40" y1="50" y2="70" stroke="green" stroke-width="7" />
+        <line x1="36" x2="80" y1="70" y2="30" stroke="green" stroke-width="7" />
+      </svg>
+    </div>
   </div>
 </div>
