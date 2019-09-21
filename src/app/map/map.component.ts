@@ -23,7 +23,10 @@ export class MapComponent implements OnInit {
 
   timePassed = 0;
   completed = 10; // in percents
-    
+
+  selectedPoint = {};
+  showSelectedPoint = false;
+
   constructor(private activatedRoute: ActivatedRoute,
      private gameService: GamesService,
      private locationService: LocationService) {}
@@ -32,7 +35,7 @@ export class MapComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
         const gameId = params['gameId'];
         this.gameService.getGame(gameId).subscribe(g => {
-          this.game = g; 
+          this.game = g;
           this.game.points.map(pp => {
             this.gameService.getPoint(pp.id).subscribe(pr => {
               if (pr) {
@@ -41,7 +44,7 @@ export class MapComponent implements OnInit {
               }
             });
           });
-        });        
+        });
       });
 
       this.options = {
@@ -62,7 +65,9 @@ export class MapComponent implements OnInit {
 
   handlePointClick(event) {
     let pointClicked = event.overlay.title;
-    let pointDetails = this.points.find(x => x.title = pointClicked);
+    let pointDetails = this.points.find(x => x.title === pointClicked);
+    this.selectedPoint = pointDetails;
+    this.showSelectedPoint = true;
     console.log(pointDetails);
   }
 
@@ -70,6 +75,11 @@ export class MapComponent implements OnInit {
     let m = Math.floor(this.timePassed / 60);
     let s = this.timePassed - m * 60;
     return m > 0 ? `${m} minutes ${s} seconds` : `${s} seconds`;
+  }
+
+  closeChallengePopup() {
+    this.selectedPoint = {};
+    this.showSelectedPoint = false;
   }
 
 }

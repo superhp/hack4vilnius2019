@@ -1,0 +1,17 @@
+<div class="challenge-popup" [ngClass]="{show : show}">
+  <img alt="" src="{{point.image}}" />
+  <svg viewBox="0 0 100 100" class="svg-cross" (click)="close()">
+      <line x1="30" y1="30" x2="70" y2="70" stroke-width="7.5"></line>
+      <line x1="30" y1="70" x2="70" y2="30" stroke-width="7.5"></line>
+  </svg>
+  <div class="container">
+    <h3>{{point.title}}</h3>
+    <p>{{point.description}}</p>
+    <h4>Challenge</h4>
+    <p>{{point.question}}</p>
+    <mat-form-field>
+      <input matInput placeholder="Answer" />
+    </mat-form-field>
+    <button mat-flat-button color="primary">Solve challenge</button>
+  </div>
+</div>
