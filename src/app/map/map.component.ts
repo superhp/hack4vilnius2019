@@ -20,6 +20,9 @@ export class MapComponent implements OnInit {
   points = [];
   options: any;
   overlays = [];
+
+  timePassed = 0;
+  pointsCompleted = 1;
     
   constructor(private activatedRoute: ActivatedRoute,
      private gameService: GamesService,
@@ -53,11 +56,19 @@ export class MapComponent implements OnInit {
       this.locationService.currentLocation.subscribe(x => {
         console.log('Current coordinates: ' + x.latitude + ',' + x.longitude);
       })
+
+      setInterval(() => this.timePassed++, 1000);
   }
 
   handlePointClick(event) {
     let pointClicked = event.overlay.title;
     let pointDetails = this.points.find(x => x.title = pointClicked);
     console.log(pointDetails);
+  }
+
+  getTimeInString(){
+    let m = Math.floor(this.timePassed / 60);
+    let s = this.timePassed - m * 60;
+    return m > 0 ? `${m} minutes ${s} seconds` : `${s} seconds`;
   }
 }
