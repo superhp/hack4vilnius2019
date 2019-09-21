@@ -58,7 +58,7 @@ export class MapComponent implements OnInit {
                     title: pr.title,
                     zIndex: this.currentMarkerIndex,
                     icon: {
-                      url: "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
+                      url: "../../assets/pin-red.png",
                       scaledSize: new google.maps.Size(52, 52)
                     }
                   }));
@@ -91,7 +91,7 @@ export class MapComponent implements OnInit {
             point.setAnimation(google.maps.Animation.BOUNCE);
             point.setZIndex(++this.currentMarkerIndex);
             point.setIcon({
-              url: "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
+              url: "../../assets/pin-blue.png",
               scaledSize: new google.maps.Size(82, 82)
             });
           }
