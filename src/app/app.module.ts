@@ -7,6 +7,7 @@ import { GMapModule } from 'primeng/gmap';
 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 import { firebaseConfig } from '../environments/firebase-config';
 
@@ -29,6 +30,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { DefinedGamesAccordionComponent } from './defined-games-accordion/defined-games-accordion.component';
 
@@ -69,11 +71,13 @@ import { ChallengePopupComponent } from './challenge-popup/challenge-popup.compo
     MatIconModule,
     MatInputModule,
     MatTableModule,
+    MatProgressSpinnerModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireFunctionsModule
 
   ],
   providers: [AuthService],

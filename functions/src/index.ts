@@ -1,8 +1,20 @@
-// import * as functions from 'firebase-functions';
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+admin.initializeApp();
+
+export const checkAnswer = functions.https.onCall((data, context) => {
+  console.log(data);
+  return admin.firestore().collection("/points").doc(data.point).get().then(snapshot => {
+    const point = snapshot.data();
+    console.log(point);
+    if(data.answer === point!.answer)
+      return admin.firestore().collection("/results").doc(data.result).get().then(resultSnapshot => {
+        const result = resultSnapshot.data();
+        return admin.database().ref('/results').child(data.result).child('complete').set([
+          ...result!.complete, data.point
+        ]).then(() => true);
+      })
+    return false;
+  })
+});

@@ -56,9 +56,9 @@ export class MapComponent implements OnInit {
             this.game.points.map(pp => {
               this.gameService.getPoint(pp.id).subscribe(pr => {
                 if (pr) {
-                  this.points.push(pr);
+                  this.points.push({id: pp.id, ...pr});
                   this.overlays.push(new google.maps.Marker({
-                    position: {lat: pr.location.latitude, lng: pr.location.longitude}, 
+                    position: {lat: pr.location.latitude, lng: pr.location.longitude},
                     title: pr.title,
                     zIndex: this.currentMarkerIndex,
                     icon: {
