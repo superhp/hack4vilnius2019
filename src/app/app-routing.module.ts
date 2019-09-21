@@ -9,7 +9,7 @@ import { MapComponent } from 'src/app/map/map.component';
 const routes: Routes = [
   {path: 'game-mode', component: GameModeComponent},
   { path: '',   redirectTo: '/game-mode', pathMatch: 'full' },
-  {path: 'game-settings', component: GameSettingsComponent},
+  {path: 'game-settings/:mode', component: GameSettingsComponent},
   {path: 'instructions', component: InstructionsComponent},
   {path: 'map', component: MapComponent},
 ];
