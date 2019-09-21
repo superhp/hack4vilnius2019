@@ -18,8 +18,8 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
       this.options = {
-          center: {lat: 36.890257, lng: 30.707417},
-          zoom: 12
+          center: {lat: 54.6872, lng: 25.2797},
+          zoom: 14
       };
   }
 }
