@@ -31,7 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     GMapModule,
     FlexLayoutModule,
-    SharedModule
+    SharedModule,
     MatButtonModule
   ],
   providers: [],
