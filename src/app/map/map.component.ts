@@ -40,8 +40,9 @@ export class MapComponent implements OnInit {
       };
   }
 
-  handleOverlayClick(event) {
+  handlePointClick(event) {
     let pointClicked = event.overlay.title;
-    console.log(pointClicked);
+    let pointDetails = this.points.find(x => x.title = pointClicked);
+    console.log(pointDetails);
   }
 }
