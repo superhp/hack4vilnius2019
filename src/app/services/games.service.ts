@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { IGame } from '../models/game';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IGame } from '../models/game';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,28 @@ export class GamesService {
       });
     }));
   }
-  
+
   public getGame(gameId: string): Observable<any> {
-    return this.afs.collection('games').doc(gameId).valueChanges();
+    const doc = this.afs.collection('games').doc(gameId);
+    return doc.valueChanges().pipe(
+        map(res => ({
+            ...res,
+            ref: doc.ref.path
+        }))
+    );
   }
 
   public getPoint(pointId: string): Observable<any> {
     return this.afs.collection('points').doc(pointId).valueChanges();
+  }
+
+  public initGame(game: any, user: any): Observable<any> {
+      return from(this.afs.collection('results').add({
+          start: new Date(),
+          end: null,
+          game: game.ref,
+          user: `/users/${user.uid}`,
+          username: user.name
+      })).pipe(map(res => res.id));
   }
 }
