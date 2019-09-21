@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GamesService } from '../services/games.service';
 
 @Component({
   selector: 'app-instructions',
@@ -9,9 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class InstructionsComponent implements OnInit {
 
   selectedGameId: string;
+  pointsCount: number;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private gameService: GamesService
+  ) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -19,7 +23,11 @@ export class InstructionsComponent implements OnInit {
 
       const gameType = params['gameType'];
       console.log('gameType = ' + gameType);
-    })
+    });
+
+    this.gameService.getGame(this.selectedGameId).subscribe(g => {
+      this.pointsCount = g.points.length;
+    });
   }
 
   navigateToMap() {
