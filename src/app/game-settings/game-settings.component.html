@@ -1,5 +1,27 @@
-<div>
-    <app-page-header header="Game Settings"></app-page-header>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div>
+        <app-page-header header="Game Settings"></app-page-header>
+    </div>
+
+    <h4>Select type</h4>
+    <mat-form-field>
+        <mat-label>Game type</mat-label>
+        <mat-select [(value)]="selectedGameType">
+            <mat-option *ngFor="let type of gameTypes" [value]="type.value">
+                {{type.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div [ngSwitch]="selectedGameType">
+        <div *ngSwitchCase="gameTypeEnum.Themed">
+            <div>Themed selected</div>
+        </div>
+        <div *ngSwitchCase="gameTypeEnum.Random">
+            <div>Random selected</div>
+        </div>
+    </div>
+
 </div>
 
 <p>game-settings works!</p>
