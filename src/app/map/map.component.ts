@@ -2,6 +2,7 @@ import {Component,OnInit} from '@angular/core';
 import {GamesService} from "../services/games.service";
 import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../services/location.service';
+import { DemoService } from '../services/demo.service';
 
 declare var google: any;
 
@@ -26,7 +27,8 @@ export class MapComponent implements OnInit {
     
   constructor(private activatedRoute: ActivatedRoute,
      private gameService: GamesService,
-     private locationService: LocationService) {}
+     private locationService: LocationService,
+     private demoService: DemoService) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -58,6 +60,18 @@ export class MapComponent implements OnInit {
       })
 
       setInterval(() => this.timePassed++, 1000);
+
+      this.demoService.getCathedralSquare().subscribe(data => {
+        if (data.arrived) {
+          console.log('Arrived to Cathedral Square');
+        }
+      })
+
+      this.demoService.getGediminasTower().subscribe(data => {
+        if (data.arrived) {
+          console.log('Arrived to Gediminas Tower');
+        }
+      })
   }
 
   handlePointClick(event) {
