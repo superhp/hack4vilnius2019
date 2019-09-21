@@ -28,6 +28,8 @@ export class MapComponent implements OnInit {
   selectedPoint = {};
   showSelectedPoint = false;
 
+  currentMarkerIndex = 10;
+
   constructor(private activatedRoute: ActivatedRoute,
      private gameService: GamesService,
      private locationService: LocationService,
@@ -42,7 +44,15 @@ export class MapComponent implements OnInit {
             this.gameService.getPoint(pp.id).subscribe(pr => {
               if (pr) {
                 this.points.push(pr);
-                this.overlays.push(new google.maps.Marker({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title}));
+                this.overlays.push(new google.maps.Marker({
+                  position: {lat: pr.location.latitude, lng: pr.location.longitude}, 
+                  title: pr.title,
+                  zIndex: this.currentMarkerIndex,
+                  icon: {
+                    url: "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
+                    scaledSize: new google.maps.Size(52, 52)
+                  }
+                }));
               }
             });
           });
@@ -66,7 +76,15 @@ export class MapComponent implements OnInit {
 
       this.demoService.getCathedralSquare().subscribe(data => {
         if (data.arrived) {
-          console.log('Arrived to Cathedral Square');
+          let point = this.overlays.find(x => x.title === 'Cathedral Square');
+          if(point){
+            point.setAnimation(google.maps.Animation.BOUNCE);
+            point.setZIndex(++this.currentMarkerIndex);
+            point.setIcon({
+              url: "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
+              scaledSize: new google.maps.Size(82, 82)
+            });
+          }
         }
       })
 
