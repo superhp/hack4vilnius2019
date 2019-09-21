@@ -1,8 +1,9 @@
-import {Component,OnInit} from '@angular/core';
-import {GamesService} from "../services/games.service";
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LocationService } from '../services/location.service';
+import { AuthService } from '../services/auth.service';
 import { DemoService } from '../services/demo.service';
+import { GamesService } from '../services/games.service';
+import { LocationService } from '../services/location.service';
 
 declare var google: any;
 
@@ -21,6 +22,7 @@ export class MapComponent implements OnInit {
   points = [];
   options: any;
   overlays = [];
+  resultId: string;
 
   timePassed = 0;
   completed = 10; // in percents
@@ -31,35 +33,43 @@ export class MapComponent implements OnInit {
   currentMarkerIndex = 10;
 
   constructor(private activatedRoute: ActivatedRoute,
-     private gameService: GamesService,
-     private locationService: LocationService,
-     private demoService: DemoService) {}
+              private gameService: GamesService,
+              private locationService: LocationService,
+              private demoService: DemoService,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-        const gameId = params['gameId'];
+        const gameId = params.gameId;
         this.gameService.getGame(gameId).subscribe(g => {
           this.game = g;
-          this.game.points.map(pp => {
-            this.gameService.getPoint(pp.id).subscribe(pr => {
-              if (pr) {
-                this.points.push(pr);
-                this.overlays.push(new google.maps.Marker({
-                  position: {lat: pr.location.latitude, lng: pr.location.longitude}, 
-                  title: pr.title,
-                  zIndex: this.currentMarkerIndex,
-                  icon: {
-                    url: "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
-                    scaledSize: new google.maps.Size(52, 52)
-                  }
-                }));
-              }
+
+          const userData = this.authService.userData;
+
+          this.gameService.initGame(g, userData).subscribe(res => {
+            console.log('Game initialized', res);
+            this.resultId = res;
+            this.game.points.map(pp => {
+              this.gameService.getPoint(pp.id).subscribe(pr => {
+                if (pr) {
+                  this.points.push(pr);
+                  this.overlays.push(new google.maps.Marker({
+                    position: {lat: pr.location.latitude, lng: pr.location.longitude}, 
+                    title: pr.title,
+                    zIndex: this.currentMarkerIndex,
+                    icon: {
+                      url: "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
+                      scaledSize: new google.maps.Size(52, 52)
+                    }
+                  }));
+                }
+              });
             });
           });
         });
       });
 
-      this.options = {
+    this.options = {
           center: {lat: 54.6872, lng: 25.2797},
           zoom: 14,
           mapTypeId: 'terrain',
@@ -68,13 +78,13 @@ export class MapComponent implements OnInit {
           mapTypeControl: false
       };
 
-      this.locationService.currentLocation.subscribe(x => {
+    this.locationService.currentLocation.subscribe(x => {
         console.log('Current coordinates: ' + x.latitude + ',' + x.longitude);
-      })
+      });
 
-      setInterval(() => this.timePassed++, 1000);
+    setInterval(() => this.timePassed++, 1000);
 
-      this.demoService.getCathedralSquare().subscribe(data => {
+    this.demoService.getCathedralSquare().subscribe(data => {
         if (data.arrived) {
           let point = this.overlays.find(x => x.title === 'Cathedral Square');
           if(point){
@@ -86,26 +96,26 @@ export class MapComponent implements OnInit {
             });
           }
         }
-      })
+      });
 
-      this.demoService.getGediminasTower().subscribe(data => {
+    this.demoService.getGediminasTower().subscribe(data => {
         if (data.arrived) {
           console.log('Arrived to Gediminas Tower');
         }
-      })
+      });
   }
 
   handlePointClick(event) {
-    let pointClicked = event.overlay.title;
-    let pointDetails = this.points.find(x => x.title === pointClicked);
+    const pointClicked = event.overlay.title;
+    const pointDetails = this.points.find(x => x.title === pointClicked);
     this.selectedPoint = pointDetails;
     this.showSelectedPoint = true;
     console.log(pointDetails);
   }
 
-  getTimeInString(){
-    let m = Math.floor(this.timePassed / 60);
-    let s = this.timePassed - m * 60;
+  getTimeInString() {
+    const m = Math.floor(this.timePassed / 60);
+    const s = this.timePassed - m * 60;
     return m > 0 ? `${m} minutes ${s} seconds` : `${s} seconds`;
   }
 

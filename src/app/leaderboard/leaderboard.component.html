@@ -1,1 +1,31 @@
-<p>leaderboard works!</p>
+<div fxLayout="column" fxLayoutAlign="center center" class="instructions-container">
+    <div>
+        <app-page-header header="Leaderboard"></app-page-header>
+    </div>
+
+    <table mat-table [dataSource]="leaderboard" class="leaderboard-table mat-elevation-z8" *ngIf="leaderboard">
+        
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+        </ng-container>
+        
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+        
+        <!-- Duration Column -->
+        <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef> Game duration </th>
+            <td mat-cell *matCellDef="let element"> {{element.duration}} mins</td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlighted-row': row.id == currentId}"></tr>
+    </table>
+          
+          
+</div>
