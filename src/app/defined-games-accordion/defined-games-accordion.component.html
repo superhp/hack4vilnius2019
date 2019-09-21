@@ -1,14 +1,9 @@
-<mat-accordion class="accordion-container">
-    <mat-expansion-panel *ngFor="let game of games">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{game.title}}
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>{{game.description}}</p>
-        <div class="choose-button-container">
-            <span class="fill-space"></span>
-            <button mat-raised-button (click)="chooseGame(game.id)" >Choose</button>
+<div class="game-card-container">
+    <div class="game-card" *ngFor="let game of games" (click)="chooseGame(game.id)">
+        <img src="{{game.img}}"/>
+        <div class="game-card-overlay">
+            <h1>{{game.title}}</h1>
+            <p>{{game.description}}</p>
         </div>
-    </mat-expansion-panel>
-</mat-accordion>
+    </div>
+</div>

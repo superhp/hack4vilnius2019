@@ -11,9 +11,9 @@ export const checkAnswer = functions.https.onCall((data, context) => {
     if(data.answer === point!.answer)
       return admin.firestore().collection("/results").doc(data.result).get().then(resultSnapshot => {
         const result = resultSnapshot.data();
-        return admin.database().ref('/results').child(data.result).child('complete').set([
-          ...result!.complete, data.point
-        ]).then(() => true);
+        return admin.firestore().collection("/results").doc(data.result).update({
+          complete: [...result!.complete, data.point]
+        }).then(() => true);
       })
     return false;
   })
