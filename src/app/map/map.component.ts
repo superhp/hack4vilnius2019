@@ -1,4 +1,5 @@
 import {Component,OnInit} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-map',
@@ -12,11 +13,17 @@ import {Component,OnInit} from '@angular/core';
 })
 export class MapComponent implements OnInit {
     
-  options: any;
+  constructor(private activatedRoute: ActivatedRoute) {}
 
+  options: any;
   overlays: any[];
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+        const gameId = params['gameId'];
+        console.log(gameId);
+      })
+
       this.options = {
           center: {lat: 36.890257, lng: 30.707417},
           zoom: 12

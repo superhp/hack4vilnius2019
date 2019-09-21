@@ -1,20 +1,14 @@
 <mat-accordion class="accordion-container">
-    <mat-expansion-panel>
+    <mat-expansion-panel *ngFor="let game of games">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                Vilnius essentials
+                {{game.title}}
             </mat-panel-title>
         </mat-expansion-panel-header>
-    </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                The majestic architecture
-            </mat-panel-title>
-            <!-- <mat-panel-description>
-                Currently I am {{panelOpenState ? 'open' : 'closed'}}
-            </mat-panel-description> -->
-        </mat-expansion-panel-header>
-        <p>Important info about the route</p>
+        <p>{{game.description}}</p>
+        <div class="choose-button-container">
+            <span class="fill-space"></span>
+            <button mat-raised-button (click)="chooseGame(game.id)" >Choose</button>
+        </div>
     </mat-expansion-panel>
 </mat-accordion>

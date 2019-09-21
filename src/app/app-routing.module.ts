@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '',   redirectTo: '/game-mode', pathMatch: 'full'},
   {path: 'game-settings/:mode', component: GameSettingsComponent},
   {path: 'instructions', component: InstructionsComponent},
-  {path: 'map', component: MapComponent},
+  {path: 'map', component: MapComponent}
 ];
 
 @NgModule({
