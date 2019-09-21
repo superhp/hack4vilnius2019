@@ -2,7 +2,7 @@
     <div>
         <app-page-header header="Game Settings"></app-page-header>
     </div>
-    <mat-tab-group>
+    <mat-tab-group (selectedIndexChange)="tabIndexChanged($event)">
       <mat-tab label="Themed">
         <app-defined-games-accordion (gameSelected)="onGameSelected($event)"></app-defined-games-accordion>
       </mat-tab>
