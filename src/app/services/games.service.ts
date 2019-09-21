@@ -41,7 +41,8 @@ export class GamesService {
           end: null,
           game: game.ref,
           user: `/users/${user.uid}`,
-          username: user.name
+          username: user.name,
+          complete: []
       })).pipe(map(res => res.id));
   }
 }
