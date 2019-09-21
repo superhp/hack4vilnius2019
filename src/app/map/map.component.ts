@@ -30,6 +30,8 @@ export class MapComponent implements OnInit {
   selectedPoint = {};
   showSelectedPoint = false;
 
+  currentMarkerIndex = 10;
+
   constructor(private activatedRoute: ActivatedRoute,
               private gameService: GamesService,
               private locationService: LocationService,
@@ -41,6 +43,7 @@ export class MapComponent implements OnInit {
         const gameId = params.gameId;
         this.gameService.getGame(gameId).subscribe(g => {
           this.game = g;
+
           const userData = this.authService.userData;
 
           this.gameService.initGame(g, userData).subscribe(res => {
@@ -50,7 +53,15 @@ export class MapComponent implements OnInit {
               this.gameService.getPoint(pp.id).subscribe(pr => {
                 if (pr) {
                   this.points.push(pr);
-                  this.overlays.push(new google.maps.Marker({position: {lat: pr.location.latitude, lng: pr.location.longitude}, title: pr.title}));
+                  this.overlays.push(new google.maps.Marker({
+                    position: {lat: pr.location.latitude, lng: pr.location.longitude}, 
+                    title: pr.title,
+                    zIndex: this.currentMarkerIndex,
+                    icon: {
+                      url: "../../assets/pin-red.png",
+                      scaledSize: new google.maps.Size(52, 52)
+                    }
+                  }));
                 }
               });
             });
@@ -59,8 +70,8 @@ export class MapComponent implements OnInit {
       });
 
     this.options = {
-          center: {lat: 54.6872, lng: 25.2797},
-          zoom: 14,
+          center: {lat: 54.6863, lng: 25.2887},
+          zoom: 16,
           mapTypeId: 'terrain',
           fullscreenControl: false,
           streetViewControl: false,
@@ -75,7 +86,15 @@ export class MapComponent implements OnInit {
 
     this.demoService.getCathedralSquare().subscribe(data => {
         if (data.arrived) {
-          console.log('Arrived to Cathedral Square');
+          let point = this.overlays.find(x => x.title === 'Cathedral Square');
+          if(point){
+            point.setAnimation(google.maps.Animation.BOUNCE);
+            point.setZIndex(++this.currentMarkerIndex);
+            point.setIcon({
+              url: "../../assets/pin-blue.png",
+              scaledSize: new google.maps.Size(82, 82)
+            });
+          }
         }
       });
 
