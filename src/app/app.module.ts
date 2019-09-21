@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DefinedGamesAccordionComponent } from './defined-games-accordion/defined-games-accordion.component';
 
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
@@ -38,6 +39,7 @@ import { AuthService } from './services/auth.service';
     InstructionsComponent,
     GameSettingsComponent,
     GameModeComponent,
+    DefinedGamesAccordionComponent,
     LoginComponent
   ],
   imports: [
