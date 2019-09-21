@@ -108,6 +108,17 @@ export class MapComponent implements OnInit {
         if (data.arrived) {
           console.log('Arrived to Gediminas Tower');
         }
+        if (data.arrived) {
+          let point = this.overlays.find(x => x.title === 'Gediminas Tower');
+          if(point){
+            point.setAnimation(google.maps.Animation.BOUNCE);
+            point.setZIndex(++this.currentMarkerIndex);
+            point.setIcon({
+              url: "../../assets/pin-blue.png",
+              scaledSize: new google.maps.Size(82, 82)
+            });
+          }
+        }
       });
   }
 
