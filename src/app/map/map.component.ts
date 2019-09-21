@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   overlays = [];
 
   timePassed = 0;
-  pointsCompleted = 1;
+  completed = 0.3;
     
   constructor(private activatedRoute: ActivatedRoute,
      private gameService: GamesService,
@@ -71,4 +71,5 @@ export class MapComponent implements OnInit {
     let s = this.timePassed - m * 60;
     return m > 0 ? `${m} minutes ${s} seconds` : `${s} seconds`;
   }
+
 }
