@@ -29,7 +29,7 @@ export class MapComponent implements OnInit {
   resultId: string;
 
   timePassed = 0;
-  completed = 1; // in percents
+  completed = 0; // in percents
 
   selectedPoint = {};
   showSelectedPoint = false;
