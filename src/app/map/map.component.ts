@@ -33,6 +33,8 @@ export class MapComponent implements OnInit {
 
   selectedPoint = {};
   showSelectedPoint = false;
+  arrivedAtPoint = "";
+  showNotCloseEnoughtError = false;
 
   currentMarkerIndex = 10;
 
@@ -74,7 +76,7 @@ export class MapComponent implements OnInit {
                         scaledSize: new google.maps.Size(52, 52)
                       });
                     }
-                }                
+                }
             });
 
             this.game.points.map(pp => {
@@ -94,7 +96,7 @@ export class MapComponent implements OnInit {
               });
             });
           });
-        });        
+        });
       });
 
     this.options = {
@@ -114,6 +116,7 @@ export class MapComponent implements OnInit {
 
     this.demoService.getCathedralSquare().subscribe(data => {
         if (data.arrived) {
+          this.arrivedAtPoint = 'Cathedral Square';
           let point = this.overlays.find(x => x.title === 'Cathedral Square');
           if(point){
             point.setAnimation(google.maps.Animation.BOUNCE);
@@ -131,6 +134,7 @@ export class MapComponent implements OnInit {
           console.log('Arrived to Gediminas Tower');
         }
         if (data.arrived) {
+          this.arrivedAtPoint = 'Gediminas Tower';
           let point = this.overlays.find(x => x.title === 'Gediminas Tower');
           if(point){
             point.setAnimation(google.maps.Animation.BOUNCE);
@@ -147,9 +151,10 @@ export class MapComponent implements OnInit {
   handlePointClick(event) {
     const pointClicked = event.overlay.title;
     const pointDetails = this.points.find(x => x.title === pointClicked);
+
     this.selectedPoint = pointDetails;
     this.showSelectedPoint = true;
-    console.log(pointDetails);
+    this.showNotCloseEnoughtError = this.arrivedAtPoint !== pointClicked;
   }
 
   getTimeInString() {
@@ -161,6 +166,7 @@ export class MapComponent implements OnInit {
   closeChallengePopup() {
     this.selectedPoint = {};
     this.showSelectedPoint = false;
+    setTimeout(() => this.showNotCloseEnoughtError = false, 300);
   }
 
   onGameFinished() {

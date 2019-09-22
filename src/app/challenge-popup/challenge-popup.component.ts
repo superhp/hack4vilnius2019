@@ -12,6 +12,7 @@ export class ChallengePopupComponent implements OnInit {
   @Input() point: any;
   @Input() show: boolean;
   @Input() result: string;
+  @Input() notAtPoint: boolean;
   @Output() onClose = new EventEmitter();
 
   answer: string = "";
