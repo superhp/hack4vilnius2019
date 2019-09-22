@@ -4,13 +4,13 @@
     </div>
 
     <div style="margin-top: 30px;">
-        <img src="../../assets/finish.png" style="width: 200px" />
+        <img src="../../assets/finish.png" style="width: 150px" />
     </div>
 
     <div *ngIf="result" style="margin-top: 30px; font-size: 19px; height: 100%">
         <ul>
             <li style="padding-bottom: 8px;">The game took you {{duration}} mins to finish</li>
-            <li style="padding-bottom: 8px;">You visited {{result.complete.length}} points</li>
+            <li style="padding-bottom: 8px;">You visited {{result.complete.length}} points out of 2</li>
             <li style="padding-bottom: 8px;">You are no. {{position}} in the leaderboard</li>
         </ul>
     </div>
