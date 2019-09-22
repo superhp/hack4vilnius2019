@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { AuthService } from './services/auth.service';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SharedModule } from './shared/shared.module';
     MatInputModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    FormsModule,
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireStorageModule,
