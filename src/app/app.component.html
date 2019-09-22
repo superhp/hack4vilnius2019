@@ -3,7 +3,9 @@
         <!-- <button mat-icon-button>
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
         </button> -->
-        <h1 class="logo" [routerLink]="['/login']">Scavenger hunt</h1>
+        <h1 class="logo" [routerLink]="['/login']" style="display:flex">
+            <img src="../../assets/logo_white.png" style="width: 150px" />
+        </h1>
         <span class="menu-spacer"></span>
     
         <div class="menu-items" fxLayout="row" fxLayoutAlign="end center" *ngIf="authService.isLoggedIn"> 
