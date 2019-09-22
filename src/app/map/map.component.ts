@@ -90,8 +90,6 @@ export class MapComponent implements OnInit {
                       scaledSize: new google.maps.Size(52, 52)
                     }
                   }));
-
-                  //this.onGameFinished();
                 }
               });
             });
