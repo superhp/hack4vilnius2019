@@ -58,7 +58,7 @@ export class MapComponent implements OnInit {
 
             this.resultsService.getResultValue(this.resultId).subscribe(results => {
                 let completedPoints = results.complete || [];
-                if(this.game.points.length === completedPoints.length){
+                if(this.game.points.length === completedPoints.length && results.end === null){
                     this.onGameFinished();
                 }
                 this.completed = completedPoints.length / this.game.points.length * 100;
