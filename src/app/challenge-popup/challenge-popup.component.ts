@@ -43,7 +43,8 @@ export class ChallengePopupComponent implements OnInit {
       setTimeout(() => {
         if(this.success)
           this.close();
-        this.loading = 0
+        this.loading = 0;
+        this.answer = "";
       }, 1000);
     });
   }
