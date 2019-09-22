@@ -14,7 +14,7 @@ export class ChallengePopupComponent implements OnInit {
   @Input() result: string;
   @Output() onClose = new EventEmitter();
 
-  answer = "";
+  answer: string = "";
   success = false;
   loading = 0;
 
@@ -25,10 +25,6 @@ export class ChallengePopupComponent implements OnInit {
 
   close() {
     this.onClose.emit();
-  }
-
-  onKey(value: string) {
-    this.answer = value;
   }
 
   checkAnswer() {
@@ -43,7 +39,8 @@ export class ChallengePopupComponent implements OnInit {
       setTimeout(() => {
         if(this.success)
           this.close();
-        this.loading = 0
+        this.loading = 0;
+        this.answer = "";
       }, 1000);
     });
   }

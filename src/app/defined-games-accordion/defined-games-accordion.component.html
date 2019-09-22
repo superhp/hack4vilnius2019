@@ -1,5 +1,5 @@
 <div class="game-card-container">
-    <div class="game-card" *ngFor="let game of games" (click)="chooseGame(game.id)">
+    <div class="game-card" style="border-radius:3px;" *ngFor="let game of games" (click)="chooseGame(game.id)">
         <img src="{{game.img}}"/>
         <div class="game-card-overlay">
             <h1>{{game.title}}</h1>

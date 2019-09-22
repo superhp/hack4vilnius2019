@@ -10,7 +10,7 @@
     <h4>Challenge</h4>
     <p>{{point.question}}</p>
     <mat-form-field>
-      <input #answer matInput placeholder="Answer" (keyup)="onKey(answer.value)" />
+      <input matInput placeholder="Answer" [(ngModel)]="answer" />
     </mat-form-field>
     <button *ngIf="loading === 0" mat-flat-button color="primary" (click)="checkAnswer()">Solve challenge</button>
     <div class="spinner-container" *ngIf="loading === 1">

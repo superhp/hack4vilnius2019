@@ -8,7 +8,7 @@ export const checkAnswer = functions.https.onCall((data, context) => {
   return admin.firestore().collection("/points").doc(data.point).get().then(snapshot => {
     const point = snapshot.data();
     console.log(point);
-    if(data.answer === point!.answer)
+    if(data.answer.toLowerCase() === point!.answer.toLowerCase())
       return admin.firestore().collection("/results").doc(data.result).get().then(resultSnapshot => {
         const result = resultSnapshot.data();
         return admin.firestore().collection("/results").doc(data.result).update({
